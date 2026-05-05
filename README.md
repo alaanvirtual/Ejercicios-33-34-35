@@ -1,1 +1,141 @@
-# Ejercicios-33-34-35
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ejercicios Web</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4ff;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    .ejercicio {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .ejercicio h2 {
+      font-size: 16px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .resultado {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ejercicios de Programación Web</h1>
+
+  <!-- Ejercicio 33 -->
+  <div class="ejercicio">
+    <h2>Ejercicio #33 — Verificación de Anagramas</h2>
+    <label for="palabra1">Primera palabra:</label>
+    <input type="text" id="palabra1" placeholder="ej. listen" />
+    <label for="palabra2">Segunda palabra:</label>
+    <input type="text" id="palabra2" placeholder="ej. silent" />
+    <button onclick="verificarAnagrama()">Verificar</button>
+    <p class="resultado" id="res33"></p>
+  </div>
+
+  <!-- Ejercicio 34 -->
+  <div class="ejercicio">
+    <h2>Ejercicio #34 — Cambio de Divisas</h2>
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" placeholder="ej. 100" />
+    <label for="tasa">Tipo de cambio:</label>
+    <input type="number" id="tasa" placeholder="ej. 0.85" step="any" />
+    <button onclick="calcularCambio()">Calcular</button>
+    <p class="resultado" id="res34"></p>
+  </div>
+
+  <!-- Ejercicio 35 -->
+  <div class="ejercicio">
+    <h2>Ejercicio #35 — Convertidor de Tiempo</h2>
+    <label for="segundos">Total de segundos:</label>
+    <input type="number" id="segundos" placeholder="ej. 3661" />
+    <button onclick="convertirTiempo()">Convertir</button>
+    <p class="resultado" id="res35"></p>
+  </div>
+
+  <script>
+    function verificarAnagrama() {
+      const w1 = document.getElementById('palabra1').value.trim().toLowerCase();
+      const w2 = document.getElementById('palabra2').value.trim().toLowerCase();
+      if (!w1 || !w2) { document.getElementById('res33').textContent = 'Ingresa ambas palabras.'; return; }
+      const ordenar = s => s.split('').sort().join('');
+      document.getElementById('res33').textContent = ordenar(w1) === ordenar(w2) ? 'Sí' : 'No';
+    }
+
+    function calcularCambio() {
+      const cantidad = parseFloat(document.getElementById('cantidad').value);
+      const tasa = parseFloat(document.getElementById('tasa').value);
+      if (isNaN(cantidad) || isNaN(tasa)) { document.getElementById('res34').textContent = 'Ingresa valores válidos.'; return; }
+      document.getElementById('res34').textContent = 'El resultado es ' + (cantidad * tasa).toFixed(2);
+    }
+
+    function convertirTiempo() {
+      const total = parseInt(document.getElementById('segundos').value);
+      if (isNaN(total) || total < 0) { document.getElementById('res35').textContent = 'Ingresa un número válido.'; return; }
+      const h = Math.floor(total / 3600);
+      const m = Math.floor((total % 3600) / 60);
+      const s = total % 60;
+      document.getElementById('res35').textContent = total + ' segundos corresponden a ' + h + 'h, ' + m + 'm y ' + s + 's';
+    }
+  </script>
+
+</body>
+</html>
